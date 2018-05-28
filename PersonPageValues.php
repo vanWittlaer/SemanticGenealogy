@@ -19,7 +19,10 @@ class PersonPageValues {
 	public $prefix;
 	public $suffix;
 	public $sex;
+
+	/** @var SMWDataItem */
 	public $birthdate;
+
 	public $birthplace;
 	public $deathdate;
 	public $deathplace;
@@ -187,13 +190,17 @@ class PersonPageValues {
 				$text .= static::getWikiTextDateFromSMWDITime( $this->birthdate ) . ' ';
 			} elseif ( is_string( $this->birthdate ) && preg_match( $yearRegexp, $this->birthdate ) ) {
 				$text .= preg_replace( $yearRegexp, "$1", $this->birthdate );
-			}
+			} elseif ($this->birthdate instanceof SMWDIBlob) {
+			    $text .= preg_replace( $yearRegexp, "$1", $this->birthdate->getString() );
+            }
 			$text .= '-';
 			if ( $this->deathdate instanceof SMWDITime ) {
 				$text .= ' ' . static::getWikiTextDateFromSMWDITime( $this->deathdate );
 			} elseif ( is_string( $this->deathdate ) && preg_match( $yearRegexp, $this->deathdate ) ) {
 				$text .= preg_replace( $yearRegexp, "$1", $this->deathdate );
-			}
+			}  elseif ($this->deathdate instanceof SMWDIBlob) {
+                $text .= preg_replace( $yearRegexp, "$1", $this->deathdate->getString() );
+            }
 			$text .= ')</span>';
 		}
 		$text .= '</div>';
