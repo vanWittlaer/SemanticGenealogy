@@ -169,7 +169,7 @@ class PersonPageValues {
 	/**
 	 * Generate the Person description wiki text based on the special pages options
 	 *
-	 * @param boolean $withBr adding <br> tags or not
+	 * @param boolean $withBr adding <br> tags or not - not used anymore
 	 * @param string $displayName the display type tag
 	 *
 	 * @return string the text to display
@@ -182,9 +182,6 @@ class PersonPageValues {
 		$text .= '</div>';
 		if ( $this->birthdate || $this->deathdate ) {
 			$text .= '<span class="person-dates">';
-			if ( $withBr ) {
-				$text .= '<br />';
-			}
 			$text .= '(';
 			if ( $this->birthdate instanceof SMWDITime ) {
 				$text .= static::getWikiTextDateFromSMWDITime( $this->birthdate ) . ' ';
