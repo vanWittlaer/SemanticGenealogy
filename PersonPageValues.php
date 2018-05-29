@@ -136,13 +136,13 @@ class PersonPageValues
      *
      * @return integer a comparaison integer
      */
-    private function comparePeopleByBirthDate(
+    private static function comparePeopleByBirthDate(
         PersonPageValues $personA,
         PersonPageValues $personB
     ) {
 
-        $aKey = $this->getBirthdate($personA);
-        $bKey = $this->getBirthdate($personB);
+        $aKey = PersonPageValues::getBirthdate($personA);
+        $bKey = PersonPageValues::getBirthdate($personB);
 
         if ($bKey < $aKey) {
             return 1;
@@ -153,7 +153,7 @@ class PersonPageValues
         }
     }
 
-    private function getBirthdate(PersonPageValues $person): int
+    private static function getBirthdate(PersonPageValues $person): int
     {
         $sortkey = 3000;
 
