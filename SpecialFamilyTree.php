@@ -99,7 +99,8 @@ class SpecialFamilyTree extends SpecialPage {
 
 		try {
 
-			$familytree = FamilyTreeFactory::create( $this->type, $this->decorator );
+			/** @var FamilyTree $familytree */
+		    $familytree = FamilyTreeFactory::create( $this->type, $this->decorator );
 			$familytree->setPerson( $this->page );
 			$familytree->setDisplayName( $this->displayname );
 
